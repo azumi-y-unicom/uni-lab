@@ -1,0 +1,34 @@
+ /* ログイン画面 */
+ .login-main {
+  width: 260px;
+}
+
+.login-inner-frame{
+  display: inline-block;
+  width: 285px;
+}
+
+.login-area{
+  padding: 15px;
+  background: #FFF;
+}
+
+.login-area .input-area {
+  margin-bottom: 10px;
+}
+
+.login-area + .login-area{
+  margin-top: 5px;
+}
+
+.login-area input, .login-area button{
+  width: 100%;
+}
+
+/* Navbar */
+.bg-unilab{
+  background-color: #CDFAD7;
+}
+.nav-right{
+  margin-left: auto;
+}

@@ -13,7 +13,7 @@ export const getOnLogout= (e) =>{
 const Header = (props) =>{
   return (
     <Navbar className="bg-unilab  mr-auto" variant="light">
-      <Navbar.Brand href="#home" className="">UniLab</Navbar.Brand>
+      <Navbar.Brand href="/" className="">UniLab</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">ホーム</Nav.Link>
         <Nav.Link href="/items">ファイル管理</Nav.Link>

@@ -11,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,11 +59,11 @@ WSGI_APPLICATION = 'unilab_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_learning',
-        'USER': 'ps_learning',
-        'PASSWORD': 'ps_learning',
+        'NAME': 'unilab_db',
+        'USER': 'unilab',
+        'PASSWORD': 'unilab',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '15432',
     }
 }
 

@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13.2
+    restart: always
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_USER: unilab
+      POSTGRES_PASSWORD: unilab
+      POSTGRES_DB: unilab_db

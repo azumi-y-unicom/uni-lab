@@ -1,6 +1,6 @@
 /** 参考 */
 /* https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/row-select-props.html */
-
+import React, { Component } from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
 /** Todo：フィルター機能 */
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
@@ -68,21 +68,55 @@ const defaultSorted = [{
   order: 'desc'
 }];
 
-const Users = (props) =>{
-  return (
-      <div>
-        <h2>Users</h2>
-        <BootstrapTable
-          keyField = "id"
-          data = {dataSmp}
-          columns = {columns}
-          bootstrap4 = {true}
-          bordered={true}
-					striped={true}
-					noDataIndication={ 'no results found' }
-        />
+
+class Users extends Component {
+	constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false,
+      items: []
+    };
+  }
+	
+	componentDidMount() {
+		// URL外出し
+		fetch("http://localhost:8000/fooapp/users/", {
+			mode: 'cors'
+		})
+			.then(res => res.json())
+			.then(json => {
+				this.setState({
+					isLoaded: true,
+					items: json
+				});
+			});
+	}
+
+	render() {
+		var { items, isLoaded } = this.state;
+		if (!isLoaded) {
+			return (
+				<div>
+					<h2>Users</h2>
+					<div>Now Loading</div>
 				</div>
-  );
-};
-  
+			);
+		}else{
+			return (
+				<div>
+					<h2>Users</h2>
+					<BootstrapTable
+						keyField = "id"
+						data = {items}
+						columns = {columns}
+						bootstrap4 = {true}
+						bordered={true}
+						striped={true}
+						noDataIndication={ 'no results found' }
+					/>
+				</div>
+			);
+		}
+	};
+}
 export default Users;

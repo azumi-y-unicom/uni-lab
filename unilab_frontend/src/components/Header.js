@@ -12,13 +12,13 @@ export const getOnLogout= (e) =>{
 
 const Header = (props) =>{
   return (
-    <Navbar className="bg-unilab  mr-auto" variant="light">
+    <Navbar className="bg-unilab nabbar-position mr-auto" variant="light">
       <Navbar.Brand href="/" className="">UniLab</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">ホーム</Nav.Link>
-        <Nav.Link href="/items">ファイル管理</Nav.Link>
+        <Nav.Link href="/labs">マイラボ</Nav.Link>
         <NavDropdown title="管理者機能" id="collasible-nav-dropdown">
-          <NavDropdown.Item href="/users">ユーザー管理</NavDropdown.Item>
+          <NavDropdown.Item href="/">ユーザー管理</NavDropdown.Item>
           <NavDropdown.Divider />
         </NavDropdown>
       </Nav>

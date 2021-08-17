@@ -29,6 +29,17 @@
 .bg-unilab{
   background-color: #CDFAD7;
 }
+.nabbar-position{
+  padding: 0px 10px 0px 10px;
+}
 .nav-right{
   margin-left: auto;
+}
+
+.main-veiw{
+  margin: 5px 5px 0px 5px;
+}
+
+.form-table input, .form-table textarea{
+  width: 100%;
 }

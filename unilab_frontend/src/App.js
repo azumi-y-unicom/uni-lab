@@ -9,8 +9,8 @@ import {
 
 
 import './App.css';
-import Login from './components/Login';
-import Main from './components/Main';
+import Login from './pages/Login';
+import Main from './pages/Main';
 
 
 
@@ -24,7 +24,7 @@ export class App extends React.Component {
               <Route path="/login">
                 <Login />
               </Route>
-              <Route path={["/", "/users", "/items"]} exact>
+              <Route path={["/", "/labs"]} exact>
                 <Main />
               </Route>
             </Switch>

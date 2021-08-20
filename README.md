@@ -54,3 +54,27 @@ DATABASES = {
     }
 }
 ```
+
+<br><br>
+
+# 実行
+## バックエンド(Django)を起動する  
+`uni-lab`のディレクトリで下記コマンドを実行する
+```
+cd .\unilab_api\  
+python manage.py runserver
+```
+
+<br>
+
+## フロントエンド(React)を起動する  
+`uni-lab`のディレクトリで下記コマンドを実行する
+```
+cd .\unilab_frontend\
+npm start
+```
+
+<br>
+  
+フロントエンド起動後`Launch Chrome`でデバックが可能  
+<br>

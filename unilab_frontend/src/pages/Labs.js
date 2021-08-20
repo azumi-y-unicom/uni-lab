@@ -11,11 +11,6 @@ const btn = {
 	text: "新規作成"
 };
 
-export const createNewLab = (e) =>{
-  e.preventDefault();
-  alert("Coming Soon!!");
-}
-
 class Labs extends Component {
 	constructor(props) {
     super(props);
@@ -28,10 +23,9 @@ class Labs extends Component {
 	componentDidMount() {
 		axios.get(`http://localhost:8000/lab`)
 			.then(res =>{
-				const labs = res.data.list;
         this.setState({ 
 					isLoaded: true,
-					items: labs
+					items: res.data.list
 				});
 			})
 			.catch(res => {
@@ -51,12 +45,17 @@ class Labs extends Component {
 			);
 		}else{
 			// サーバーと通信完了
-			const listItems = this.state.items.map((item) =>
-				<div className="box-lab">
-					<div>ID： {item.id}</div>
-					<div>タイトル：{item.title}</div>
-					<div>説明：{item.description}</div>
-					<div>登録数：{item.deck_count}</div>
+			// リスト
+			const listItems = this.state.items.map( (item, i) =>
+				<div className="box-lab" key={i} >
+					<div className="upper">
+						<div className="title">
+							<a className="deck-link" href="#">{item.title}</a>
+								<span className="count">登録件数：{item.deck_count}</span>
+						</div>
+						<button type="button" className="btn btn-outline-success btn-sm">編集</button>
+					</div>
+					<div>{item.description}</div>
 				</div>
 			);
 			return (
@@ -65,10 +64,10 @@ class Labs extends Component {
 					<div className="create-button-area">
 						<CreateButton btn={btn}/>
 					</div>
-					<div className="">
+					<div className="" >
 						{listItems}
+					</div>
 				</div>
-			</div>
 			);
 		}
 	};

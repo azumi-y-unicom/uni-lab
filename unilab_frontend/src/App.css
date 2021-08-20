@@ -40,6 +40,28 @@
   margin: 5px 5px 0px 5px;
 }
 
+.create-button-area{
+  padding: 20px;
+}
+
 .form-table input, .form-table textarea{
   width: 100%;
+}
+
+.box-lab{
+  border: 1px solid #e6eaea;
+  padding: 15px 25px 10px;
+}
+
+.box-lab .upper{
+  padding-bottom: 10px;
+  border-bottom: dotted 1px #e6eaea;
+  margin-bottom: 5px;
+}
+.box-lab .upper .title{
+  max-width: 920px;
+}
+
+.box-lab .count{
+  float: right;
 }

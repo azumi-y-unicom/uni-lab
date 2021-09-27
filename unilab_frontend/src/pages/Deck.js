@@ -12,7 +12,7 @@ const btn = {
 	text: "新規作成"
 };
 
-class Labs extends Component {
+class Deck extends Component {
 
 	editLab = (id, e) => {
 		var url = `http://localhost:8000/lab/` + id + '/';
@@ -26,26 +26,33 @@ class Labs extends Component {
 			})
 	}
 
-	moveDecks = (id, e) => {
-		this.props.history.push({
-			pathname: '/deck',
-			state: {lab_id: id}
-		});
-	}
 
 	constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      items: []
+			infomation: {},
+			items: [],
     };
 	}
 
 	componentDidMount() {
-		axios.get(`http://localhost:8000/lab`)
+
+		// 直リンはLabsに戻す
+		if(this.props.location.state === undefined){
+			this.props.history.push({
+				pathname: '/labs'
+			});
+			return;
+		}
+
+		var lab = this.props.location.state.lab_id;
+		var url = `http://localhost:8000/lab/` + lab + `/deck/`;
+		axios.get(url)
 			.then(res =>{
         this.setState({ 
 					isLoaded: true,
+					infomation: res.data.infomation,
 					items: res.data.list
 				});
 			})
@@ -57,34 +64,32 @@ class Labs extends Component {
 
 	render() {
 		if (!this.state.isLoaded) {
-			// サーバーと通信中
 			return (
 				<div>
-					<h2>Lab</h2>
+					<h2>Deck</h2>
 					<div>Now Loading</div>
 				</div>
 			);
 		}else{
-			// サーバーと通信完了
-			// リスト
+			const info = this.state.infomation;
 			const listItems = this.state.items.map( (item, i) =>
 				<div className="box-lab" key={i} >
 					<div className="upper">
 						<div className="title">
 							<a className="deck-link" href="" onClick={(e) => this.moveDecks(item.id, e)}>{item.title}</a>
-								<span className="count">登録件数：{item.deck_count}</span>
+								<span className="count">登録件数：{item.card_count}</span>
 						</div>
 						<button type="button" onClick={(e) => this.editLab(item.id, e)} className="btn btn-outline-success btn-sm">編集</button>
 					</div>
-					<div>{item.description}</div>
+					<div>{item.comment}</div>
 				</div>
 			);
+
 			return (
 				<div>
-					<h2>Lab</h2>
-					<div className="create-button-area">
-						<CreateButton btn={btn}/>
-					</div>
+					<h2>説明</h2>
+					<div>{info.title}、{info.description}、{info.deck_count}</div>
+					<h2>一覧</h2>
 					<div className="" >
 						{listItems}
 					</div>
@@ -93,4 +98,4 @@ class Labs extends Component {
 		}
 	};
 }
-export default withRouter(Labs);
+export default withRouter(Deck);

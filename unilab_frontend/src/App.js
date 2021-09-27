@@ -24,7 +24,7 @@ export class App extends React.Component {
               <Route path="/login">
                 <Login />
               </Route>
-              <Route path={["/", "/labs"]} exact>
+              <Route path={["/", "/labs", "/deck"]} exact>
                 <Main />
               </Route>
             </Switch>

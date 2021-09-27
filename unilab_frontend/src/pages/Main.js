@@ -8,6 +8,7 @@ import {
 import Header from '../components/Header';
 import Users from '../components/Users'
 import Labs from './Labs'
+import Deck from './Deck'
 
 
 const Main = (props) =>{
@@ -23,8 +24,8 @@ const Main = (props) =>{
             <Route path="/labs" exact>
               <Labs />
             </Route>
-            <Route path="/users" exact>
-              <Users />
+            <Route path="/deck" exact>
+              <Deck />
             </Route>
           </Switch>
         </Router>

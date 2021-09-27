@@ -23,7 +23,7 @@ class LabListView(views.APIView):
     lab_model = Labs.objects.create(
       title = request.data["title"], 
       description = request.data["description"], 
-      is_active = True)
+      is_active =  request.data["is_active"])
     serializer = LabSerializer(lab_model)
     response = {"result": serializer.data}
     return Response(response,  status.HTTP_201_CREATED)

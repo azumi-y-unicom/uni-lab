@@ -20,9 +20,10 @@ const FormLab = (props) => {
             <th>利用状態</th>
             <td>
               <select name="is_active" 
-                onChange={e => props.setIs_active(e.target.value)} >
-                <option value="1">利用中</option>
-                <option value="0">利用停止</option>
+                onChange={e => props.setIsActive(e.target.value)} 
+                value={props.is_active}>
+                <option value="True">利用中</option>
+                <option value="False">利用停止</option>
               </select>
             </td>
           </tr>

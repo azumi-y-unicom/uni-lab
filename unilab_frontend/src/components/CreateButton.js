@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import FormLab from './FormLab'
+import axios from 'axios';
 
 
 const CreateButton = (props) => {
@@ -12,11 +13,28 @@ const CreateButton = (props) => {
   const handleShow = () => setShow(true);
 
   const handleSubmit = (e) =>{
-    
+    e.preventDefault();
+    var url = `http://localhost:8000/lab/`;
+    var data ={
+      title,
+      description,
+      is_active
+    }
+    axios.post(url, data)
+    .then(res =>{
+      alert("追加しました");
+      setShow(false);
+      // TODO 再読み込み
+    })
+    .catch(res => {
+      // 500系エラー
+      alert("エラー");
+      setShow(false);
+    })
   }
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [is_active, setIs_active] = useState("");
+  const [is_active, setIsActive] = useState("1");
   
   return (
     <>
@@ -33,15 +51,15 @@ const CreateButton = (props) => {
           </Modal.Header>
           <Modal.Body>
             <FormLab 
-              postLab=""
-              setTitle=""
-              setDescription=""
-              setIs_active="1"
+              setTitle={setTitle}
+              setDescription={setDescription}
+              is_active={is_active}
+              setIsActive={setIsActive}
             />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-            <Button variant="primary">Create</Button>
+            <Button variant="primary" type="submit">Create</Button>
           </Modal.Footer>
         </form>
       </Modal>
